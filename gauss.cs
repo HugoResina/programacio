@@ -28,22 +28,54 @@ namespace gauss
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    Console.Write(matgauss[i, j]);
+                    if(j == 0)
+                    {
+                        if (matgauss[i, j] > 0)
+                        {
+                            Console.Write(" "+matgauss[i, j] + "x ");
+                        }
+                        else
+                        {
+                            Console.Write(matgauss[i, j] + "x ");
+                        }
+                    }
+                   if(j == 1)
+                    {
+                        if (matgauss[i, j] > 0)
+                        {
+                            Console.Write("+" + matgauss[i, j] + "y ");
+                        }
+                        else
+                        {
+                            Console.Write(matgauss[i, j] + "y ");
+                        }
+                    }
+                   if (j == 2)
+                    {
+                        if (matgauss[i, j] > 0)
+                        {
+                            Console.Write("+" + matgauss[i, j] + "z = ");
+                        }
+                        else
+                        {
+                            Console.Write(matgauss[i, j] + "z = ");
+                        }
+                    }
+                   if (j == 3)
+                    {
+                        if (matgauss[i, j] > 0)
+                        {
+                            Console.Write(" " + matgauss[i, j]);
+                        }
+                        else
+                        {
+                            Console.Write(matgauss[i, j]);
+                        }
+                    }
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine();
-            Console.WriteLine();
-
-            Console.WriteLine("matriu que quedara fixa");
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < columns; j++)
-                {
-                    Console.Write(matfix[i, j]);
-                }
-                Console.WriteLine();
-            }
+            
 
             Console.WriteLine();
             Console.WriteLine();

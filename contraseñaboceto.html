@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 
+    </title>
+</head>
+<body onload="init()">
+    </div>
+    <script>
+        function init(){
+          let contraseña = prompt("escribe tu contraseña para validar su seguridad: ");
+          
+          console.log(conditions(contraseña));
+        }
+        function conditions(contraseña){
+            const MINLENGTH = 8;
+            const MAXLENGTH = 20;
+            let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+            let abecedary = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "w", "y", "x", "z"];
+            let mayus = [];
+            for (let i in abecedary){
+                mayus[i] = abecedary[i].toUpperCase();
+            }
+            let tooShort = "";
+            let tooLong = "";
+            let containNum = "";
+            let twoMinisc = "";
+            let containMayus = "";
+            if(contraseña.length < MINLENGTH){
+                tooShort = "ser mas larga";
+            }
+            if(contraseña.length > MAXLENGTH){
+                tooLong = "ser mas corta";
+            }
+            if(!contraseña.includes(numbers)){
+                containNum = "ha de contener minimo un numero";
+            }
+            if(!contraseña.includes(mayus)){
+                containMayus = "ha de contener minimo una mayuscula";
+            }
+            
+            return"la contraseña ha de " + tooShort +" "+ tooLong +" "+ containNum +" "+ containMayus;
+        }
+        
+    </script>
+ </body>
+</html>

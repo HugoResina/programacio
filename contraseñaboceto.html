@@ -15,33 +15,123 @@
           console.log(conditions(contraseña));
         }
         function conditions(contraseña){
+
+            console.log(contraseña);
+            contraseña = contraArray(contraseña);
+            
             const MINLENGTH = 8;
             const MAXLENGTH = 20;
-            let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-            let abecedary = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "w", "y", "x", "z"];
-            let mayus = [];
-            for (let i in abecedary){
-                mayus[i] = abecedary[i].toUpperCase();
-            }
+
+           
             let tooShort = "";
             let tooLong = "";
             let containNum = "";
             let twoMinisc = "";
             let containMayus = "";
+            let threeInARow = "";
+            let blank = "";
+            let containTwoMinus = "";
+            let containSpecialChar = "";
+            let allGood = "";
+
+            let numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+            let abecedary = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "w", "y", "x", "z"];
+            let mayus = [];
+            let specialChar = ["/", "-", ":", "*"]
+
+            for (let i in abecedary){
+                mayus[i] = abecedary[i].toUpperCase();
+            }
+ 
             if(contraseña.length < MINLENGTH){
-                tooShort = "ser mas larga";
+                tooShort = "\n- Ser mas larga";
             }
+
             if(contraseña.length > MAXLENGTH){
-                tooLong = "ser mas corta";
+                tooLong = "\n- Ser mas corta";
             }
-            if(!contraseña.includes(numbers)){
-                containNum = "ha de contener minimo un numero";
+
+            if(!numCheck(contraseña, numbers)){
+                containNum = "\n- Contener minimo un numero";
             }
-            if(!contraseña.includes(mayus)){
-                containMayus = "ha de contener minimo una mayuscula";
+
+            if(!mayusCheck(contraseña, mayus)){
+                containMayus = "\n- Contener minimo una mayuscula";
             }
-            
-            return"la contraseña ha de " + tooShort +" "+ tooLong +" "+ containNum +" "+ containMayus;
+            if(threeEqual(contraseña)){
+                threeInARow = "\n- No tener tres caracteres iguales seguidos";
+            }
+            if(checkBlank(contraseña)){
+                blank = "\n- No tener espacios en blanco";
+            }
+            if(!check2Minusc(contraseña, abecedary)){
+                containTwoMinus = "\n- Contener minimo dos minusculas";
+            }
+            if(!specialCharCheck(contraseña, specialChar)){
+                containSpecialChar = "\n- Contener minimo alguno de esots caracteres especiales (/, -, :, *) ";
+            }
+            if(safePassword(tooShort, tooLong, containNum, twoMinisc, containMayus, threeInARow, blank, containTwoMinus, containSpecialChar)){
+                allGood = "\n- Nada! Enhorabuena, tu contraseña es segura!"
+            }
+            return"a tu contraseña le falta: \n" + tooShort + tooLong + containNum + containMayus + threeInARow + blank + containTwoMinus + containSpecialChar + allGood;
+
+        }
+        function contraArray(contraseña){
+            let contrarray = [];
+            for(let i=0; i<contraseña.length; i++){
+                contrarray[i] = contraseña[i];
+            }
+            return contrarray;
+        }
+        function mayusCheck(contraseña, mayus){
+            for (let i=0; i<mayus.length; i++){
+                if(contraseña.includes(mayus[i])){
+                    return true;
+                }
+            }
+        }
+        function numCheck(contraseña, numbers){
+            for (let i=0; i<numbers.length; i++){
+                if(contraseña.includes(numbers[i])){
+                    return true;
+                }
+            }
+        }
+        function threeEqual(contraseña){
+            for (let i=0; i<contraseña.length-2; i++){
+                if(contraseña[i] == contraseña[i+1] && contraseña[i] == contraseña[i+2]){
+                    return true;
+                }
+            }
+        }
+        function checkBlank(contraseña){
+            if(contraseña.includes(" ")){
+                return true;
+            }
+        }
+        function check2Minusc(contraseña, abecedary){
+            for (let i=0; i<abecedary.length; i++){
+                if(contraseña.includes(abecedary[i])){
+                    for (let j=i+1; j<abecedary.length; j++){   
+                        console.log(j);
+                        if(contraseña.includes(abecedary[j])){
+                            return true; 
+                        }
+                    }
+                }
+            }
+        }
+        function specialCharCheck(contraseña, specialChar){
+            for (let i=0; i<specialChar.length; i++){
+                if(contraseña.includes(specialChar[i])){
+                    return true;
+                }
+            }
+        }
+        function safePassword(tooShort, tooLong, containNum, twoMinisc, containMayus, threeInARow, blank, containTwoMinus, containSpecialChar){
+            if(tooShort == "" && tooLong == "" && containNum == "" && twoMinisc == "" && containMayus == "" && threeInARow == "" && blank == "" && containTwoMinus == "" && containSpecialChar == ""){
+                return true
+            }
         }
         
     </script>

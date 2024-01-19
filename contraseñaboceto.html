@@ -110,16 +110,16 @@
             }
         }
         function check2Minusc(contraseña, abecedary){
+            let counter = 0;
             for (let i=0; i<abecedary.length; i++){
                 if(contraseña.includes(abecedary[i])){
-                    for (let j=i+1; j<abecedary.length; j++){   
-                        console.log(j);
-                        if(contraseña.includes(abecedary[j])){
-                            return true; 
-                        }
-                    }
+                    counter++;
                 }
             }
+            if(counter >= 2){
+                return false;
+            }
+            return true;
         }
         function specialCharCheck(contraseña, specialChar){
             for (let i=0; i<specialChar.length; i++){

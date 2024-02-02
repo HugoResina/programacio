@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 
+    </title>
+</head>
+<body onload="init()">
+    </div>
+    <script>   
+        function init(){
+            let COLORS = new Array("rojo" , "azul", "verde", "rosa", "amarillo", "negro", "blanco", "naranja")   
+            let user = new Array();   
+            let master = new Array();   
+            let result = new Array();   
+            master = asignRandom(COLORS, master);   
+            
+            //console.log(master);   
+
+            do{
+                let userImput = prompt("introduce tu secuencia de colores de la siguiente manera: color, color, color, color");                                                                                
+                user = userImput.split(", ");                                                                                  
+                result = checkColors(master, user);     
+                console.log("la teva convinacio:")                                                                           
+                console.log(user)        
+                console.log("resultat de coincidencia:")                                                                          
+                console.log(result) 
+                    if(CheckWin(result)){
+                        console.log("has guanyat")
+                    }
+            }while(!CheckWin(result))
+                                                                                                                                                   
+         }                                                                                 
+                               
+         //funcio que genera la combinacio a endivinar de forma aleatoria
+         function asignRandom(COLORS, master){                                                                                 
+            do{                                                                                
+                let newColor = Math.floor(Math.random() * 8);                                                                                  
+                master[master.length] = COLORS[newColor];                                                                                  
+                                                                            
+            }while(master.length != 4)                                                                                 
+            return master;                                                                                 
+         }                                                                                 
+                                    
+         //funcio que comprova la coincidencia entre els colors que fiques i la combinacio master
+         function checkColors(master, user){                                                                                   
+            let masterstring = master.toString();                                                                                  
+            let result = new Array();                                                                                  
+                for(let i = 0; i<master.length; i++){                                                                                  
+                if (master[i] == user[i]){                                                                                 
+                    result[i] = "negro"                                                                                
+                }                                                                                  
+                else if (masterstring.includes(user[i]) && (master[i] != user[i])){                                                                                
+                    result[i] = "gris"                                                                                 
+                }                                                                                  
+                else if ((!(masterstring.includes(user[i])) && (master[i] != user[i]))){                                                                                   
+                    result[i] = "blanco"                                                                                   
+                }                                                                                  
+            }   
+            return result;   
+
+        }   
+
+        //funcio que comproba si has guanyat
+        function CheckWin(result){
+            let counter = 0
+            for ( i = 0; i < result.length; i++){
+                if (result[i] == "negro"){
+                    counter++;
+                }
+            }
+            if (counter == 4){
+                return true;
+            }
+            return false
+        }
+
+
+    </script>   
+ </body>   
+</html>

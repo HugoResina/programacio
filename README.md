@@ -18,10 +18,10 @@ public static void SayName(){
 }
 ```
 ```mermaid
-pie title Reviews by stars
-    "5 Stars" : 89
-    "4 Stars" : 325
-    "3 Stars" : 120
-    "2 Stars" : 39
-    "1 Stars" : 8
+xychart-beta
+    title "User Ratings"
+    x-axis [1,2,3,4,5,6,7,8,9,10]
+    y-axis "Number of reviews" 0 --> 300000
+    bar [6500, 2900, 3800, 6900, 15000, 41000, 133000, 289000, 250000, 177000]
+   
 ```
